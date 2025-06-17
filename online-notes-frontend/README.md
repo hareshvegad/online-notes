@@ -31,7 +31,7 @@ This is the frontend React application for the Online Notes project, built with 
 1. **Clone the repository**
 
    ```bash
-   git clone 
+   git clone https://github.com/hareshvegad/online-notes.git
    cd online-notes-frontend
    ```
 
