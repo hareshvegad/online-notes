@@ -1,146 +1,95 @@
-# Online Notes Backend
+# Online Notes Project
 
-This is the backend API for an online notes application built with Django 5.2.2 and Django REST Framework. It provides user registration, authentication, and CRUD operations for notes.
+This repository contains both the backend and frontend applications for the **Online Notes** project, a full-stack note-taking web application.
 
 ---
 
-## Features
+## Overview
 
-- User registration and token-based authentication
-- Create, read, update, and delete personal notes
+- **Backend:** Built with Django 5.2.2 and Django REST Framework, providing a RESTful API for user authentication, registration, and note management.
+- **Frontend:** Built with React and TypeScript, featuring user interfaces for registration, login, and managing notes with protected routes and token-based authentication.
+
+---
+
+## Folder Structure
+
+```
+online_notes_backend/       # Django backend API
+online-notes-frontend/      # React frontend application
+```
+
+---
+
+## Backend (online_notes_backend)
+
+### Features
+
+- User registration and token authentication
+- CRUD operations for notes (title, content, public/private)
 - Notes are private to each authenticated user
-- CORS enabled for all origins (for frontend integration)
-- Uses SQLite database for development
+- CORS enabled for frontend integration
+- SQLite database for development
+
+### Setup
+
+1. Navigate to `online_notes_backend`
+2. Create and activate a Python virtual environment
+3. Install dependencies (`pip install -r requirements.txt`)
+4. Run migrations (`python manage.py migrate`)
+5. Start server (`python manage.py runserver`)
+
+### API Endpoints
+
+- `POST /api/users/register/` — Register user
+- `POST /api-token-auth/` — Obtain auth token
+- `GET/POST /api/notes/` — List and create notes
+- `GET/PUT/DELETE /api/notes//` — Retrieve, update, delete notes
 
 ---
 
-## Technologies Used
+## Frontend (online-notes-frontend)
 
-- Python 3.x
-- Django 5.2.2
-- Django REST Framework
-- Django REST Framework Token Authentication
-- SQLite (default development database)
-- django-cors-headers for CORS support
+### Features
 
----
+- User registration and login forms
+- Protected routes for notes management
+- Token stored in `localStorage` and attached to API requests
+- Notes listing, creation, update, and deletion UI
+- Responsive and styled with Tailwind CSS
 
-## Installation and Setup
+### Setup
 
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/hareshvegad/online-notes.git
-   cd online_notes_backend
-   ```
-
-2. **Create and activate a virtual environment**
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Apply migrations**
-
-   ```bash
-   python manage.py migrate
-   ```
-
-5. **Run the development server**
-
-   ```bash
-   python manage.py runserver
-   ```
+1. Navigate to `online-notes-frontend`
+2. Install dependencies (`npm install` or `yarn install`)
+3. Start development server (`npm start` or `yarn start`)
+4. Ensure backend is running at `http://127.0.0.1:3000`
 
 ---
 
-## API Endpoints
+## Running the Project
 
-### Authentication
-
-- `POST /api-token-auth/`  
-  Obtain authentication token by providing username and password.
-
-### User Registration
-
-- `POST /api/users/register/`  
-  Register a new user by providing `username`, `email`, and `password`.
-
-### Notes
-
-- `GET /api/notes/`  
-  List all notes belonging to the authenticated user.
-
-- `POST /api/notes/`  
-  Create a new note. Fields: `title`, `content`, `is_public` (optional).
-
-- `GET /api/notes//`  
-  Retrieve a specific note by ID (must belong to the authenticated user).
-
-- `PUT /api/notes//`  
-  Update a specific note.
-
-- `DELETE /api/notes//`  
-  Delete a specific note.
-
----
-
-## Project Structure
-
-```
-online_notes_backend/
-│
-├── online_notes_backend/
-│   ├── settings.py        # Django settings including REST framework and CORS config
-│   ├── urls.py            # URL routing for admin, notes, users, and auth token
-│   └── wsgi.py
-│
-├── notes/
-│   ├── models.py          # Note model with user foreign key
-│   ├── serializers.py     # Note serializer
-│   ├── urls.py            # Notes API endpoints
-│   └── views.py           # Notes API views with permissions
-│
-├── users/
-│   ├── serializers.py     # User registration serializer
-│   ├── urls.py            # User registration endpoint
-│   └── views.py           # User registration view
-│
-└── db.sqlite3             # SQLite database file (auto-generated)
-```
-
----
-
-## Settings Highlights
-
-- `DEBUG = True` for development only.
-- `CORS_ALLOW_ALL_ORIGINS = True` to allow frontend requests from any origin.
-- `REST_FRAMEWORK` configured to use token authentication and require authentication by default.
-- SQLite database configured as default.
+1. Start the backend server first.
+2. Then start the frontend development server.
+3. Access the frontend at `http://localhost:3000` (or the port your React app runs on).
+4. Register a new user, login, and manage your notes.
 
 ---
 
 ## Notes
 
-- Passwords are hashed using Django's built-in user model.
-- Notes are private and filtered by authenticated user.
-- The API uses token authentication; clients must include the token in the `Authorization` header as `Token `.
+- The frontend expects the backend API to be available at `http://127.0.0.1:3000`.
+- Authentication uses token-based scheme; tokens are saved in `localStorage`.
+- The backend uses SQLite by default; for production, configure a more robust database.
+- CORS is enabled in backend to allow frontend requests.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License
 
 ---
 
 ## Contact
 
-For any questions or issues, please open an issue in the repository or contact the maintainer.
+For issues or contributions, please open an issue or pull request in the repository.
