@@ -30,7 +30,7 @@ This is the backend API for an online notes application built with Django 5.2.2 
 1. **Clone the repository**
 
    ```bash
-   git clone 
+   git clone https://github.com/hareshvegad/online-notes.git
    cd online_notes_backend
    ```
 
